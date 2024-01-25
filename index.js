@@ -1,5 +1,7 @@
+const fs = require('fs');
 const inquirer = require('inquirer');
-const shapes = require('./lib/shapes.js');
+const SVG = require("./lib/svg");
+const { Square, Triangle, Circle } = require("./lib/shapes");
 
 function init() {
     inquirer
@@ -34,13 +36,41 @@ function init() {
             },
         ])
         .then((data) => {
-            if (data.text.length > 3) {
-                throw new Error('Input text for logo must have no more than 3 characters');
-            }
-            // if condition to check textColor
-            // if condition to check shapeColor
+            const svg = new SVG;
 
-            return data.json();
+            switch(data.shape) {
+                case 'circle':
+                    const circle = new Circle;              
+
+                    circle.setColor(data.shapeColor);
+                    svg.setShape(circle);
+                    svg.setText(data.text, data.textColor);
+                    break;   
+                    
+                case 'triangle':
+                    const triangle = new Triangle;
+
+                    triangle.setColor(data.shapeColor);
+                    svg.setShape(triangle);
+                    svg.setText(data.text, data.textColor);
+                    break;
+
+                case 'square':
+                    const square = new Square;
+
+                    square.setColor(data.shapeColor);
+                    svg.setShape(square);
+                    svg.setText(data.text, data.textColor);
+                    break;
+                    
+            }            
+            const renderedSVG = svg.render();
+
+            fs.writeFile('logo.svg', renderedSVG, (error) => {
+                if(error) console.error(error);
+            });
+
+            // return data.json();
         })
         .catch((error) => {
             console.log(error);

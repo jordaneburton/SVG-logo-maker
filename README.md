@@ -7,7 +7,7 @@ Node.js command-line application that takes in user input to generate a logo
 
 The SVG Logo Maker utilizes Jest and the Inquirer node.js package to craft a svg file for a logo via the terminal. The application prompts you for the logo text, the text's color, the shape of your logo, and the shape's color. The application utilizes Jest for testing the input. If the user inputs do not meet certain criteria, the tests files will catch and throw errors to the terminal, ending the execution of the application. This application is supposed to serve as a quick way to generate a simple custom logo as an SVG file while letting our Jest tests handle any errors!
 
-Here is a link to a [walkthrough video]()
+Here is a link to a [walkthrough video](https://drive.google.com/file/d/1FseVEXoGQZO6hZPQj_hGzSUHDuWaTWid/view)
 
 ## Table of Contents 
 1. [Installation](#install)
